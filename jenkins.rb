@@ -4,6 +4,6 @@ dep 'jenkins apt key' do
 end
 
 dep 'jenkins apt source' do
-  met? { shell("cat /etc/apt/sources.list.d/jenkins.list").grep(/jenkins-ci/) }
+  met? { File.exist?("/etc/apt/sources.list.d/jenkins.list") }
   meet { sudo("echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list && aptitude update")}
 end
