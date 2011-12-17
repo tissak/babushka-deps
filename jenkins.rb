@@ -1,5 +1,5 @@
 dep 'jenkins apt key' do
-  met? { !(sudo("apt-key list").grep(/Kawaguchi/).nil?) }
+  met? { !(sudo("apt-key list").grep(/Kawaguchi/).empty?) }
   meet { sudo("wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -")}
 end
 
