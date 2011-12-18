@@ -3,3 +3,5 @@ dep 'jenkins.managed' do
   installs { via :apt, 'jenkins'}
   provides []
 end
+
+dep 'curl.managed'
