@@ -1,14 +1,5 @@
-dep 'rvm user' do
-  met? { which 'rvm' }
-  meet { shell('bash -c "`wget -O - https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer`"')}
-  after { shell("echo '[[ -s \"$HOME/.rvm/scripts/rvm\" ]] && . \"$HOME/.rvm/scripts/rvm\" # Load RVM function' >> ~/.bash_profile") }
-end
-
+#system install of rvm using a gist script
 dep 'rvm system' do
-  met? { which 'rvm' }
-  meet {
-    sudo('wget -O /tmp/rvm-installer https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer"')
-    sudo('bash /tmp/rvm-installer"')
-  }
-  after { shell("echo '[[ -s \"/usr/local/rvm/scripts/rvm\" ]] && . \"/usr/local/rvm/scripts/rvm\" # Load RVM function' >> ~/.bash_profile") }
+  met? { File.exist?("/usr/local/rvm") }
+  meet { sudo('bash -c "`wget -O - https://gist.github.com/raw/2d253db7c2564f3d6388/ebb283b618f569172488cd760e5c2da5b4b918ba/rvm-installer.sh`"')}
 end
