@@ -6,6 +6,9 @@ end
 
 dep 'rvm system' do
   met? { which 'rvm' }
-  meet { sudo('bash -c "`wget -O - https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer`"')}
+  meet {
+    sudo('wget -O /tmp/rvm-installer https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer"')
+    sudo('bash /tmp/rvm-installer"')
+  }
   after { shell("echo '[[ -s \"/usr/local/rvm/scripts/rvm\" ]] && . \"/usr/local/rvm/scripts/rvm\" # Load RVM function' >> ~/.bash_profile") }
 end
